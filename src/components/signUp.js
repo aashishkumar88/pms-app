@@ -6,14 +6,19 @@ import { FormControl,Link,Button,Select,MenuItem,InputLabel } from '@mui/materia
 
 
 const signUp = () => {
+    
+    const handleSingUpSubmit=(e)=>{
+        e.preventDefault();
+    }
 
   return (
     <>
     <div className='w-96 mt-[3%] ml-[40%] border-2 	px-12 py-5'>
     <h1 className='text-3xl mb-[5%] ml-[23%]'>Sign Up</h1>
       <FormControl>
-      <TextField  fullWidth id="outlined-basic" label="Username" sx={{marginBottom:"12px",ml:"15px"}} variant="outlined" />
-      <TextField  fullWidth id="outlined-basic" label="Password" sx={{marginBottom:"6px",ml:"15px"}} variant="outlined" />
+        <form onSubmit={handleSingUpSubmit}>
+      <TextField  fullWidth id="outlined-basic" label="Username" sx={{marginBottom:"12px",ml:"10px"}} variant="outlined" />
+      <TextField  fullWidth id="outlined-basic" label="Password" sx={{marginBottom:"6px",ml:"10px"}} variant="outlined" />
      
 <FormControl fullWidth>
   <InputLabel id="demo-simple-select-label">Age</InputLabel>
@@ -21,7 +26,7 @@ const signUp = () => {
     labelId="demo-simple-select-label"
     id="demo-simple-select"
     
-    sx={{mt:'12px', ml:"15px"}}
+    sx={{mt:'12px', ml:"10px"}}
     label="Role"
     fullWidth
     //onChange={handleChange}
@@ -31,15 +36,16 @@ const signUp = () => {
   
   </Select>
 </FormControl>
-<Link href="#" underline="hover" sx={{ml:"15px"}}>
+<Link href="#" underline="hover" sx={{ml:"10px"}}>
   {'Forget Password?'}
 </Link>
-<Button variant="contained" type='submit' sx={{mt:'12px',ml:'15px'}}>
+<Button variant="contained" type='submit'fullWidth sx={{mt:'12px',ml:'10px'}}>
  Signup
 </Button>
-<Link href="#" underline="hover" sx={{ml:"15px"}}>
+<Link href="#" underline="hover" sx={{ml:"10px"}}>
   {'Already a User? LOGIN'}
 </Link>
+</form>
       </FormControl>
       </div>
     </>
