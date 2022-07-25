@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import signup from"./signup";
 
-const rootReducer=combineReducer({
+const rootReducer=combineReducers({
     signupState:signup,
 })
 

@@ -1,5 +1,5 @@
-import * as actions from "../constant";
-import { signUp } from "./signUp";
+import * as actions from "../constants";
+import { signup } from "./signup";
 import { all, fork, takeLatest } from "redux-saga/effects";
 
 function* signupBind(){
