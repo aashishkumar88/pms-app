@@ -7,28 +7,26 @@ const initialState = {
     data: null,
 }
 
-const Signup = (state = initialState, action) => {
-    console.log(action,"actionperform")
-    console.log(action.payload,"actionpayloadddd")
-    // console.log(action.payload.response,"issuccessss")
+const LogIn = (state = initialState, action) => {
+    // console.log(action,"actionperform")
+    // console.log(action.payload,"actionpayloadddd")
     switch (action.type) {
-        case actions.SIGN_UP_REQUEST:
+        case actions.LOG_IN_REQUEST:
             return {
                 ...state,
                 isLoading: true,
                 isSuccess: false,
                 isError: false,
             }
-        case actions.SIGN_UP_SUCCESS:
+        case actions.LOG_IN_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 isSuccess: true,
                 isError: false,
-                data: action.payload.response,
-               
+                data: action.payload.response
             }
-        case actions.SIGN_UP_ERROR:
+        case actions.LOG_IN_ERROR:
             return {
                 ...state,
                 isLoading: false,
@@ -39,4 +37,4 @@ const Signup = (state = initialState, action) => {
             return state;
     }
 }
-export default Signup;
+export default LogIn;
