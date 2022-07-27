@@ -2,7 +2,7 @@ import { viewPollSuccess, viewPollError } from "../actions/index";
 import { put, call } from "@redux-saga/core/effects";
 import axios from "axios";
 
-export function* viewPolls(action) {
+export function* viewPoll(action) {
   try {
     const response = yield call(
       axios.get,
@@ -19,4 +19,4 @@ export function* viewPolls(action) {
     yield put(viewPollError({ error: "NO DATA" }));
   }
 }
-export default viewPolls;
+export default viewPoll;

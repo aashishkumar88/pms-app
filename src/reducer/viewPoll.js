@@ -8,18 +8,18 @@ const initialState = {
 }
 
 const ViewPoll = (state = initialState, action) => {
-    console.log(action,"actionperform")
-    console.log(action.payload,"actionpayloadddd")
+    console.log(action,"actionaction")
+    console.log(action.payload,"viewaction")
     // console.log(action.payload.response,"issuccessss")
     switch (action.type) {
-        case actions.VIEWPOLL_REQUEST:
+        case actions.VIEW_POLL_REQUEST:
             return {
                 ...state,
                 isLoading: true,
                 isSuccess: false,
                 isError: false,
             }
-        case actions.VIEWPOLL_SUCCESS:
+        case actions.VIEW_POLL_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
@@ -28,7 +28,7 @@ const ViewPoll = (state = initialState, action) => {
                 data: action.payload.response,
                
             }
-        case actions.VIEWPOLL_ERROR:
+        case actions.VIEW_POLL_ERROR:
             return {
                 ...state,
                 isLoading: false,

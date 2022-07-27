@@ -1,47 +1,59 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-import { useDispatch} from "react-redux";
-import { viewPollRequest } from '../actions';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { viewPollRequest } from "../actions";
+import { useEffect } from "react";
 
+const ViewPoll = () => {
+  const dispatch = useDispatch();
+  const viewPollSelector = useSelector(
+    (state) => state && state.viewPollState.data
+  );
+  console.log(viewPollSelector, "viewpollselectttt");
+  const viewPollData = () => {
+    dispatch(viewPollRequest());
+  };
 
-const ViewPoll=()=> {
-    const dispatch=useDispatch();
-const viewPollData=()=>{
- dispatch(viewPollRequest())
-}
+  useEffect(() => {
+    dispatch(viewPollRequest());
+  }, []);
   return (
     <>
-    <Button onclick={viewPollData}>view</Button>
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+      <Card className="flex flex-wrap justify-items-center justify-center">
+        {viewPollSelector &&
+          viewPollSelector.data.map((val) => {
+            return (
+              <>
+                <CardContent className="w-1/4 border-1 m-4 shadow-lg">
+                  <Typography
+                    sx={{ fontSize: 16, fontWeight: "Bold" }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    {val.title}
+                    <hr />
+                    {val.options.map((item) => {
+                      return (
+                        <>
+                          <CardContent className="flex">
+                            <Typography>
+                              {item.option}
+                            </Typography>
+                          </CardContent>
+                        </>
+                      );
+                    })}
+                  </Typography>
+                </CardContent>
+              </>
+            );
+          })}
+      </Card>
     </>
   );
-}
- 
+};
+
 export default ViewPoll;

@@ -1,6 +1,7 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { useDispatch,useSelector} from "react-redux";
 import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 import {
   FormControl,
   Link,
@@ -16,10 +17,25 @@ const [logInUser,setLogInUser]=useState({
 })
 
 const dispatch=useDispatch();
-const loginSelector=useSelector((state) => state && state.signupState);
+const navigate=useNavigate();
+const loginSelector=useSelector((state) => state && state.logInState);
+console.log(loginSelector,"loginselectorrrrr")
 const LoginData=(e,key)=>{
 setLogInUser({...logInUser,[key]:e.target.value})
 }
+const userType=localStorage.getItem("role");
+console.log(userType,"asdfgguuuuuu")
+useEffect(()=>{
+  if(loginSelector.isSuccess){
+    if (loginSelector.data.error === 0 && userType === "Guest") {
+      navigate("/gDashboard");
+    }
+   if (loginSelector.data.error === 0 && userType==="Admin") {
+      navigate("/adminDash");
+    }
+
+  }
+},[loginSelector]);
 
 const handleLogInSubmit=(e)=>{
  e.preventDefault();

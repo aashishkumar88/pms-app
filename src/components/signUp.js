@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {useEffect} from "react";
 import { useDispatch,useSelector} from "react-redux";
+import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import {
@@ -10,9 +11,12 @@ import {
   Select,
   MenuItem,
   InputLabel,
-  CircularProgress
+  CircularProgress,Alert
 } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import { signUpRequest } from "../actions/index";
+
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -34,7 +38,7 @@ console.log(signupSelector.isLoading,"loading")
       }
     }
   },[signupSelector])
-// console.log(signupSelector,"successful")
+console.log(signupSelector,"successful")
 
   const signupData = (e, key) => {
     setSignupUser({...signupUser,[key]:e.target.value});
@@ -56,6 +60,22 @@ console.log(signupSelector.isLoading,"loading")
       // console.log(signUpRequest,"requesting")
     }
   };
+  
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  console.log(signupSelector.isError,"error occurred")
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
   return (
     <>
@@ -107,11 +127,24 @@ console.log(signupSelector.isLoading,"loading")
               sx={{ mt: "12px", ml: "10px" }}
             >
               {signupSelector.isLoading ? (
-              <CircularProgress sx={{ color: "white" }} />
-            ) : (
-              "Sign Up"
-            )}
+                <CircularProgress sx={{ color: "white" }} />
+              ) : (
+                "Sign Up"
+              )}
             </Button>
+            {signupSelector.isError ? (
+              <>
+                <Stack spacing={2} sx={{ width: "100%" }}>
+                    <Alert
+                      onClose={handleClose}
+                      severity="error"
+                      sx={{ width: "100%",ml:"10px",mt:"4px" }}
+                    >
+                    {signupSelector.message}
+                    </Alert>
+                </Stack>
+              </>
+            ) : null}
             <Link href="/login" underline="hover" sx={{ ml: "10px" }}>
               {"Already a User? LOGIN"}
             </Link>
