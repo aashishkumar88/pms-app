@@ -21,7 +21,7 @@ export function* logIn(action) {
           response: response.data,
         })
       );
-      localStorage.setItem("token", JSON.stringify(response.data.token));
+      localStorage.setItem("userRole", decoded.role);
     } else {
       yield put(logInError({ error: "NO DATA " }));
     }

@@ -23,11 +23,12 @@ console.log(loginSelector,"loginselectorrrrr")
 const LoginData=(e,key)=>{
 setLogInUser({...logInUser,[key]:e.target.value})
 }
-const userType=localStorage.getItem("role");
+const userType=localStorage.getItem("userRole");
 console.log(userType,"asdfgguuuuuu")
 useEffect(()=>{
   if(loginSelector.isSuccess){
     if (loginSelector.data.error === 0 && userType === "Guest") {
+      // console.log("dashboarddddd")
       navigate("/gDashboard");
     }
    if (loginSelector.data.error === 0 && userType==="Admin") {

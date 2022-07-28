@@ -82,10 +82,18 @@ export default function PersistentDrawerLeft() {
   };
 
   const handleChangeRoute = (text) => {
+     if (text === "Home") {
+       navigate("/viewPoll");
+     }
     if (text === "Create") {
       navigate("/createPoll");
     }
+    if (text === "Logout") {
+      navigate("/login");
+    }
   };
+
+  
 
   return (
     <Box sx={{ display: "flex" }}>
