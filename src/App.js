@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignUp from "./components/signUp";
+import LogIn from "./components/logIn";
+import GuestDashboard from "./components/GuestDashboard";
+import AdminDashboard from "./components/AdminDashboard"
+import store from "./store"
+import ViewPoll from "./components/viewPoll";
+import CreatePoll from "./components/createPoll";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/gDashboard" element={<GuestDashboard />} />
+            <Route path="/adminDash" element={<AdminDashboard />} />
+            <Route path="/viewPoll" element={<ViewPoll />} />
+            <Route path="/createPoll" element={<CreatePoll />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
   );
 }
 
