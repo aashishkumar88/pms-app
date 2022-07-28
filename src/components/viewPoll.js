@@ -22,7 +22,7 @@ const ViewPoll = () => {
   }, []);
   return (
     <>
-      <Card className="flex flex-wrap justify-items-center justify-center">
+      <Card className="flex flex-wrap justify-items-center justify-center mt-9">
         {viewPollSelector &&
           viewPollSelector.data.map((val) => {
             return (

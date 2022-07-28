@@ -8,20 +8,18 @@ import { createPollRequest } from "../actions/index";
 const CreatePoll = () => {
   const [createPoll, setCreatePoll] = useState({
     title: "",
-    opt1: "",
-    opt2: "",
-    opt3: "",
-    opt4: "",
+    options: [" "],
   });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const createPollSelector = useSelector((state) => state && state.createPollState);
+  const createPollSelector = useSelector(
+    (state) => state && state.createPollState
+  );
   const CreateData = (e, key) => {
     setCreatePoll({ ...createPoll, [key]: e.target.value });
   };
- 
-  
+
   useEffect(() => {
     if (createPollSelector.isSuccess) {
       if (createPollSelector.data.error === 0) {
@@ -32,16 +30,20 @@ const CreatePoll = () => {
 
   const handleCreateSubmit = (e) => {
     e.preventDefault();
-    if (
-      createPoll.title &&
-      createPoll.opt1 &&
-      createPoll.opt2 &&
-      createPoll.opt3 &&
-      createPoll.opt4
-    ) {
+    if (createPoll.title && createPoll.options) {
       dispatch(createPollRequest({ ...createPoll }));
     }
   };
+
+const CreateOption=(e,key)=>{
+  setCreatePoll({...createPoll.options,[key]:e.target.value})
+}
+
+  const handlePoll = (e, index) => {
+    const list = { ...createPoll.options };
+    // setCreatePoll({...createPoll.options,list[index]:e.target.value});
+  };
+  console.log(createPoll, "XXXXX");
   return (
     <>
       <div className="w-96 mt-[3%] ml-[35%] border-2 	px-12 py-5">
@@ -55,45 +57,24 @@ const CreatePoll = () => {
               sx={{ marginBottom: "12px", ml: "10px" }}
               variant="outlined"
               onChange={(e) => CreateData(e, "title")}
-              required
             />
-            
-              <TextField
-                fullWidth
-                label="opt1"
-                type="text"
-                sx={{ marginBottom: "6px", ml: "10px" }}
-                variant="outlined"
-                onChange={(e) => CreateData(e, "opt1")}
-                required
-              />
-              <TextField
-                fullWidth
-                label="opt2"
-                type="text"
-                sx={{ marginBottom: "6px", ml: "10px" }}
-                variant="outlined"
-                onChange={(e) => CreateData(e, "opt2")}
-                required
-              />
-              <TextField
-                fullWidth
-                label="opt3"
-                type="text"
-                sx={{ marginBottom: "6px", ml: "10px" }}
-                variant="outlined"
-                onChange={(e) => CreateData(e, "opt3")}
-                required
-              />
-              <TextField
-                fullWidth
-                label="opt4"
-                sx={{ marginBottom: "6px", ml: "10px" }}
-                variant="outlined"
-                onChange={(e) => CreateData(e, "opt4")}
-                required
-              />
-        
+            {[' '].map((val, index) => {
+              return (
+                <div key={index}>
+                  <TextField
+                    fullWidth
+                    label="option"
+                    value={val}
+                    type="text"
+                    sx={{ marginBottom: "6px", ml: "10px" }}
+                    variant="outlined"
+                    onChange={(e) => CreateOption(e, "options")}
+                  />
+                  <button onClick={(e) => handlePoll(index)}>ADD</button>
+                </div>
+              );
+            })}
+
             <Button
               variant="contained"
               type="submit"

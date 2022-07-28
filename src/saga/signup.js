@@ -20,7 +20,6 @@ export function* signup(action) {
           })
           
         );
-         localStorage.setItem("role", response.data.data.role);
       }
       else {
       yield put(signUpError({ error: "NO DATA ",message:response.data.message }));

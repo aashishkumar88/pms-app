@@ -34,7 +34,7 @@ console.log(signupSelector.isLoading,"loading")
   useEffect(()=>{
     if(signupSelector.isSuccess){
       if(signupSelector.data.error===0){
-        navigate('/login')
+        navigate('/')
       }
     }
   },[signupSelector])
@@ -117,9 +117,7 @@ console.log(signupSelector,"successful")
                 <MenuItem value={"Admin"}>Admin</MenuItem>
               </Select>
             </FormControl>
-            <Link href="#" underline="hover" sx={{ ml: "10px" }}>
-              {"Forget Password?"}
-            </Link>
+
             <Button
               variant="contained"
               type="submit"
@@ -145,7 +143,7 @@ console.log(signupSelector,"successful")
                 </Stack>
               </>
             ) : null}
-            <Link href="/login" underline="hover" sx={{ ml: "10px" }}>
+            <Link href="/" underline="hover" sx={{ ml: "10px" }}>
               {"Already a User? LOGIN"}
             </Link>
           </form>

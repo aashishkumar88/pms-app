@@ -23,16 +23,13 @@ console.log(loginSelector,"loginselectorrrrr")
 const LoginData=(e,key)=>{
 setLogInUser({...logInUser,[key]:e.target.value})
 }
-const userType=localStorage.getItem("userRole");
-console.log(userType,"asdfgguuuuuu")
+
+
 useEffect(()=>{
   if(loginSelector.isSuccess){
-    if (loginSelector.data.error === 0 && userType === "Guest") {
+    if (loginSelector.data.error === 0) {
       // console.log("dashboarddddd")
       navigate("/gDashboard");
-    }
-   if (loginSelector.data.error === 0 && userType==="Admin") {
-      navigate("/adminDash");
     }
 
   }
@@ -80,7 +77,7 @@ return(
             >
              Login
             </Button>
-            <Link href="/" underline="hover" sx={{ ml: "10px" ,mt:"12px"}}>
+            <Link href="/signup" underline="hover" sx={{ ml: "10px" ,mt:"12px"}}>
               {"create an account? Signup"}
             </Link>
           </form>

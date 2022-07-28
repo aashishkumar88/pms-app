@@ -14,7 +14,7 @@ export function* logIn(action) {
     var token = response.data.token;
     var decoded = jwt_decode(token);
 
-    console.log(decoded, "decodeddddddd");
+   // console.log(decoded, "decodeddddddd");
     if (response && response.data) {
       yield put(
         logInSuccess({

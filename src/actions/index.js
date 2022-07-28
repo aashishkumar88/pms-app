@@ -17,3 +17,7 @@ export const createPollRequest = createAction(constant.CREATE_POLL_REQUEST);
 export const createPollSuccess = createAction(constant.CREATE_POLL_SUCCESS);
 export const createPollError = createAction(constant.CREATE_POLL_ERROR);
 
+export const deletePollRequest = createAction(constant.DELETE_POLL_REQUEST);
+export const deletePollSuccess = createAction(constant.DELETE_POLL_SUCCESS);
+export const deletePollError = createAction(constant.DELETE_POLL_ERROR);
+

@@ -138,7 +138,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["Home", "Create", "Delete", "Logout"].map((text, index) => (
+          {["Home", "Create", "Logout"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => handleChangeRoute(text)}>
                 <ListItemIcon>
